@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="SeunFinance is a global currency converter, finance calculator and crypto tracker with Nigerian Naira support.">
+  <meta name="theme-color" content="#0b1220">
+  <title>SeunFinance — Smart Money Tools, Rates & Crypto</title>
+  <link rel="canonical" href="https://YOUR-DOMAIN.web.app/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2085719210019636"
+     crossorigin="anonymous"></script>
+     <meta name="google-site-verification" content="ZrTbba68qrCjye6jJXJkbmgYOjYHpp03YTEoM6QNr2Q" />
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="./" aria-label="SeunFinance home">
+      <span class="brand-mark">S</span>
+      <span><strong>SeunFinance</strong><small>Smart Money Tools</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary">
+      <button data-tab="calculators">Calculators</button>
+      <button data-tab="crypto">Crypto</button>
+      <button data-tab="rates">All Rates</button>
+    </nav>
+    <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode" title="Toggle dark mode">☾</button>
+  </div>
+</header>
+
+<section class="ticker" aria-label="Market snapshot">
+  <div class="container ticker-inner">
+    <span><b>USD</b> <span id="tickerEur">—</span> EUR</span>
+    <span><b>USD</b> <span id="tickerGbp">—</span> GBP</span>
+    <span><b>USD</b> <span id="tickerNgn">—</span> NGN</span>
+    <span><b>BTC</b> <span id="tickerBtc">—</span></span>
+    <span class="ticker-updated" id="tickerUpdated">Updating…</span>
+  </div>
+</section>
+
+<main>
+  <section class="hero container">
+    <div class="hero-copy">
+      <span class="eyebrow">GLOBAL FINANCE TOOLKIT</span>
+      <h1>Convert currencies.<br><span>Understand your money.</span></h1>
+      <p>Fast, clean tools for exchange rates, loans, mortgages, salaries, tax estimates, fuel costs and crypto prices — built for users in Nigeria and around the world.</p>
+    </div>
+
+    <div class="converter-card">
+      <div class="card-heading">
+        <div><span class="mini-label">Currency Converter</span><h2>Convert money</h2></div>
+        <span class="live-dot"><i></i> Latest available rate</span>
+      </div>
+      <div class="converter-grid">
+        <label>Amount<input id="amount" type="number" inputmode="decimal" value="100" min="0" step="any"></label>
+        <label>From<select id="fromCurrency"></select></label>
+        <div class="swap-wrap"><button id="swapBtn" class="swap-btn" aria-label="Swap currencies">⇄</button></div>
+        <label>To<select id="toCurrency"></select></label>
+      </div>
+      <button id="convertBtn" class="primary-btn">Convert</button>
+      <div class="result-box">
+        <span id="resultLabel">100 USD</span>
+        <strong id="conversionResult">—</strong>
+        <small id="rateMeta">Loading exchange rates…</small>
+      </div>
+      <p class="source-note">FX data: ExchangeRate-API open access feed. Rates are reference rates and may update about daily.</p>
+    </div>
+  </section>
+
+  <div class="container ad-slot" aria-label="Advertisement"><span>Advertisement</span></div>
+
+  <section class="container tool-section">
+    <div class="tabs" role="tablist" aria-label="Finance tools">
+      <button class="tab active" data-tab="calculators" role="tab">Calculators</button>
+      <button class="tab" data-tab="crypto" role="tab">Crypto</button>
+      <button class="tab" data-tab="rates" role="tab">All Rates</button>
+    </div>
+
+    <section id="calculatorsPanel" class="panel active-panel">
+      <div class="section-intro">
+        <div><span class="eyebrow">MONEY CALCULATORS</span><h2>Plan with confidence</h2></div>
+        <p>Simple estimates with transparent formulas. Results are informational and should not replace professional financial or tax advice.</p>
+      </div>
+      <div class="calculator-grid">
+        <article class="tool-card">
+          <div class="tool-icon">⌂</div><h3>Mortgage</h3><p>Estimate monthly principal and interest.</p>
+          <label>Home price<input id="mortgagePrice" type="number" value="250000" min="0"></label>
+          <label>Down payment<input id="mortgageDown" type="number" value="50000" min="0"></label>
+          <label>Annual rate (%)<input id="mortgageRate" type="number" value="7" step="0.01" min="0"></label>
+          <label>Term (years)<input id="mortgageYears" type="number" value="30" min="1" max="50"></label>
+          <button class="secondary-btn calc-btn" data-calc="mortgage">Calculate</button>
+          <div class="calc-output" id="mortgageOut">—</div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">₦</div><h3>Loan</h3><p>Calculate an estimated monthly loan payment.</p>
+          <label>Loan amount<input id="loanAmount" type="number" value="1000000" min="0"></label>
+          <label>Annual rate (%)<input id="loanRate" type="number" value="15" step="0.01" min="0"></label>
+          <label>Term (months)<input id="loanMonths" type="number" value="24" min="1"></label>
+          <button class="secondary-btn calc-btn" data-calc="loan">Calculate</button>
+          <div class="calc-output" id="loanOut">—</div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">▣</div><h3>Salary</h3><p>Estimate take-home pay after deductions.</p>
+          <label>Gross salary<input id="salaryGross" type="number" value="500000" min="0"></label>
+          <label>Tax (%)<input id="salaryTax" type="number" value="10" min="0" max="100" step="0.1"></label>
+          <label>Other deductions (%)<input id="salaryOther" type="number" value="5" min="0" max="100" step="0.1"></label>
+          <button class="secondary-btn calc-btn" data-calc="salary">Calculate</button>
+          <div class="calc-output" id="salaryOut">—</div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">%</div><h3>Tax</h3><p>Quick percentage-based tax estimate.</p>
+          <label>Income / taxable amount<input id="taxIncome" type="number" value="1000000" min="0"></label>
+          <label>Tax rate (%)<input id="taxRate" type="number" value="10" min="0" max="100" step="0.1"></label>
+          <button class="secondary-btn calc-btn" data-calc="tax">Calculate</button>
+          <div class="calc-output" id="taxOut">—</div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">⛽</div><h3>Fuel / Gas</h3><p>Estimate trip fuel use and cost.</p>
+          <label>Distance (km)<input id="fuelDistance" type="number" value="250" min="0"></label>
+          <label>Vehicle efficiency (km/L)<input id="fuelEfficiency" type="number" value="12" min="0.1" step="0.1"></label>
+          <label>Fuel price / L<input id="fuelPrice" type="number" value="1000" min="0"></label>
+          <button class="secondary-btn calc-btn" data-calc="fuel">Calculate</button>
+          <div class="calc-output" id="fuelOut">—</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="cryptoPanel" class="panel">
+      <div class="section-intro">
+        <div><span class="eyebrow">CRYPTO TRACKER</span><h2>Popular market prices</h2></div>
+        <p>Crypto prices refresh periodically from a public market-data endpoint. Use the figures for information, not investment decisions.</p>
+      </div>
+      <div class="crypto-grid" id="cryptoGrid"></div>
+      <div class="status-line" id="cryptoStatus">Loading crypto market data…</div>
+    </section>
+
+    <section id="ratesPanel" class="panel">
+      <div class="section-intro">
+        <div><span class="eyebrow">GLOBAL FX</span><h2>All Rates</h2></div>
+        <p>Compare supported currencies against USD. Search by code or currency name.</p>
+      </div>
+      <div class="rates-toolbar">
+        <input id="rateSearch" type="search" placeholder="Search USD, NGN, EUR…" aria-label="Search rates">
+        <select id="rateSort" aria-label="Sort rates"><option value="code">Sort by code</option><option value="value">Sort by value</option></select>
+      </div>
+      <div class="rates-table-wrap">
+        <table><thead><tr><th>Currency</th><th>Code</th><th>1 USD equals</th></tr></thead><tbody id="ratesBody"></tbody></table>
+      </div>
+    </section>
+  </section>
+
+  <div class="container ad-slot large" aria-label="Advertisement"><span>Advertisement</span></div>
+
+  <section class="container content-section">
+    <div class="content-card">
+      <span class="eyebrow">WHY SEUNFINANCE</span>
+      <h2>A practical finance toolkit for a global audience</h2>
+      <p>SeunFinance brings everyday money calculations into one clean workspace. Visitors can convert currencies, estimate loan and mortgage payments, check salary deductions, estimate percentage tax, calculate fuel costs and monitor major cryptocurrencies.</p>
+      <div class="feature-list">
+        <div><b>🌍 Global</b><span>Popular international currencies plus Nigerian Naira.</span></div>
+        <div><b>⚡ Fast</b><span>Lightweight HTML, CSS and JavaScript with no heavy framework.</span></div>
+        <div><b>📱 Responsive</b><span>Designed for phones, tablets and desktop screens.</span></div>
+        <div><b>🔒 Secure</b><span>HTTPS-ready and deployable on Firebase Hosting.</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div><a class="brand footer-brand" href="./"><span class="brand-mark">S</span><span><strong>SeunFinance</strong><small>Smart Money Tools</small></span></a><p>Independent finance tools for everyday calculations and market reference.</p></div>
+    <div><h4>Explore</h4><a href="./#calculators">Calculators</a><a href="./#crypto">Crypto</a><a href="./#rates">All Rates</a></div>
+    <div><h4>Information</h4><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+  </div>
+  <div class="container footer-bottom"><span>© <span id="year"></span> SeunFinance</span><span>Rates by ExchangeRate-API · Crypto by CoinMarketCap public API</span></div>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

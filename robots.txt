@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://seunfinance.web.app/sitemap.xml
